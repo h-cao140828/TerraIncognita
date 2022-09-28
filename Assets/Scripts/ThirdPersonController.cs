@@ -125,6 +125,11 @@ namespace StarterAssets
         }
 
 
+
+        PlayerInteraction playerInteraction;
+
+
+
         private void Awake()
         {
             // get a reference to our main camera
@@ -152,6 +157,8 @@ namespace StarterAssets
             // reset our timeouts on start
             _jumpTimeoutDelta = JumpTimeout;
             _fallTimeoutDelta = FallTimeout;
+
+            playerInteraction = GetComponentInChildren<PlayerInteraction>();
         }
 
         private void Update()
@@ -161,6 +168,9 @@ namespace StarterAssets
             JumpAndGravity();
             GroundedCheck();
             Move();
+
+            // Runs the function that handles all interaction
+            Interact();
         }
 
         private void LateUpdate()
@@ -388,6 +398,14 @@ namespace StarterAssets
             if (animationEvent.animatorClipInfo.weight > 0.5f)
             {
                 AudioSource.PlayClipAtPoint(LandingAudioClip, transform.TransformPoint(_controller.center), FootstepAudioVolume);
+            }
+        }
+
+        public void Interact()
+        {
+            if (Input.GetMouseButtonDown(0))
+            {
+                playerInteraction.InteractWithFarmLand();
             }
         }
     }
