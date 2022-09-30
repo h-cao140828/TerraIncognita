@@ -12,7 +12,7 @@ public class PlayerCombat : MonoBehaviour
     GameObject currentWeaponInHand;
     GameObject currentWeaponInSheath;
     public Animator animator;
-    bool sheathed = true;
+    public bool sheathed = true;
 
     // Start is called before the first frame update
     void Start()
@@ -24,6 +24,7 @@ public class PlayerCombat : MonoBehaviour
     void Update()
     {
         var keyboard = Keyboard.current;
+        var mouse = Mouse.current;
         if (keyboard != null)
         {
             // check if press "T"
@@ -39,38 +40,125 @@ public class PlayerCombat : MonoBehaviour
                 }
             }
 
+            if (keyboard.tabKey.wasPressedThisFrame)
+            {
+                // Checks if the player has their weapon sheathed
+                if (sheathed)
+                {
+                    DrawWeapon();
+                    Target();
+                }
+                else
+                {
+                    Target();
+                }
+            }
 
-            // Perform an attack if the player's weapon is drawn and left clicks
-            var mouse = Mouse.current;
+            // Checks if the player used a mouse button and has their weapon drawn
+            if (mouse.rightButton.isPressed && !sheathed)
+            {
+                Block(true);
+            }
+            else if (mouse.rightButton.wasReleasedThisFrame && !sheathed)
+            {
+                Block(false);
+            }
+
             if (mouse.leftButton.wasPressedThisFrame && !sheathed)
             {
-                animator.SetTrigger("Attack");
+                MeleeAttack();
             }
+
+            // Checks if the player enter a keyboard key while having their weapon drawn
+            if (keyboard.digit1Key.wasPressedThisFrame && !sheathed)
+            {
+                UseSkill(0);
+            }
+            if (keyboard.digit2Key.wasPressedThisFrame && !sheathed)
+            {
+                UseSkill(1);
+            }
+            if (keyboard.digit3Key.wasPressedThisFrame && !sheathed)
+            {
+                UseSkill(2);
+            }
+            if (keyboard.qKey.wasPressedThisFrame && !sheathed)
+            {
+                PetSkill(0);
+            }
+            if (keyboard.eKey.wasPressedThisFrame && !sheathed)
+            {
+                PetSkill(1);
+            }
+            if (keyboard.leftCtrlKey.wasPressedThisFrame && !sheathed)
+            {
+                DeployBarrier();
+            }
+
         }
     }
 
-    void Attack()
-    {
-        // Play an attack animation
-        animator.SetTrigger("Attack");
-        // Detect enemies in range of attack
-        // Damage them
-    }
-
-    // A function for using melee attacks
     void MeleeAttack()
     {
-       
+            // Plays an attack animation
+            animator.SetTrigger("Attack");
+            // Detect enemies in range of attack
+            // Damage them
     }
 
     // A function for using player skills
+    void UseSkill(int skillKey)
+    {
+        // Place holder 
+        skillKey += 1;
+        Debug.Log("No skill equipped on " + skillKey + " slot");
+
+        // Plays the appropriate skill animation
+        // Detects a target in range of skill
+        // Applys the skill effect
+    }
 
     // A function for using companion skills
+    void PetSkill(int skillKey)
+    {
+        // Place holder 
+        skillKey += 1;
+        Debug.Log("No pet skill equipped on " + skillKey + " slot");
+        // Plays the appropriate skill
+        // Detects a target in range of skill
+        // Applys the skill effect
+    }
+
+    // A function for handling blocking
+    void Block(bool blocking)
+    {
+        // Play the blocking animation
+        animator.SetBool("Block", blocking);
+        // Apply reduced damage taken
+    }
+
+    void DeployBarrier()
+    {
+        // Play the animation for deploying a barrier
+        animator.SetTrigger("DeployBarrier");
+        // Code for negating damage
+        // Code for handling barrier cooldown
+        // Code for destroying the barrier object
+    }
+
+    void Target()
+    {
+        // Placeholder 
+        Debug.Log("Targeting system not implemented yet");
+
+        // Code to handle targeting a nearby attackable target
+        // Code to cycle through available targets.
+    }
 
     public void DrawWeapon()
     {
-        //draw = true;
         sheathed = false;
+
         // Play an animation
         animator.SetTrigger("DrawWeapon");
         // Place weapon in hand
@@ -82,6 +170,7 @@ public class PlayerCombat : MonoBehaviour
     public void SheathWeapon()
     {
         sheathed = true;
+
         // Play an animation
         animator.SetTrigger("SheathWeapon");
         // Place weapon in sheath

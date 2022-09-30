@@ -125,9 +125,10 @@ namespace StarterAssets
         }
 
 
-
+        PlayerCombat playerCombat;
         PlayerInteraction playerInteraction;
-
+        bool openInventory = false;
+        bool openSkills = false;
 
 
         private void Awake()
@@ -159,6 +160,7 @@ namespace StarterAssets
             _fallTimeoutDelta = FallTimeout;
 
             playerInteraction = GetComponentInChildren<PlayerInteraction>();
+            playerCombat = GetComponent<PlayerCombat>();
         }
 
         private void Update()
@@ -171,6 +173,8 @@ namespace StarterAssets
 
             // Runs the function that handles all interaction
             Interact();
+            Inventory();
+            SkillMenu();
         }
 
         private void LateUpdate()
@@ -405,9 +409,57 @@ namespace StarterAssets
         public void Interact()
         {
             var keyboard = Keyboard.current;
-            if (keyboard.fKey.wasPressedThisFrame)
+            if (keyboard.fKey.wasPressedThisFrame && playerCombat.sheathed)
             {
                 playerInteraction.InteractWithFarmLand();
+            }
+        }
+
+        public void Inventory()
+        {
+            var keyboard = Keyboard.current;
+            if (keyboard.iKey.wasPressedThisFrame && playerCombat.sheathed)
+            {
+                if (!openInventory)
+                {
+                    openInventory = true;
+                    Cursor.lockState = CursorLockMode.None;
+                    // place holder
+                    Debug.Log("Opened inventory");
+
+                    // code for handling inventory
+                }
+                else
+                {
+                    openInventory = false;
+                    Cursor.lockState = CursorLockMode.Locked;
+                    // place holder
+                    Debug.Log("Closed inventory");
+                }
+            }
+        }
+
+        public void SkillMenu()
+        {
+            var keyboard = Keyboard.current;
+            if (keyboard.kKey.wasPressedThisFrame && playerCombat.sheathed)
+            {
+                if (!openSkills)
+                {
+                    openSkills = true;
+                    Cursor.lockState = CursorLockMode.None;
+                    // place holder
+                    Debug.Log("Opened skill menu");
+
+                    // code for handling skills
+                }
+                else
+                {
+                    openSkills = false;
+                    Cursor.lockState = CursorLockMode.Locked;
+                    // place holder
+                    Debug.Log("Closed skill menu");
+                }
             }
         }
     }
