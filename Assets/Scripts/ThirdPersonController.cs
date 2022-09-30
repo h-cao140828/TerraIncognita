@@ -401,9 +401,11 @@ namespace StarterAssets
             }
         }
 
+        // Interact function
         public void Interact()
         {
-            if (Input.GetMouseButtonDown(0))
+            var keyboard = Keyboard.current;
+            if (keyboard.fKey.wasPressedThisFrame)
             {
                 playerInteraction.InteractWithFarmLand();
             }
