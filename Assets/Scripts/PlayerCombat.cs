@@ -11,6 +11,9 @@ public class PlayerCombat : MonoBehaviour
 
     GameObject currentWeaponInHand;
     GameObject currentWeaponInSheath;
+
+    public GameObject combatShield;
+    public GameObject movementShield;
     public Animator animator;
     public bool sheathed = true;
 
@@ -159,6 +162,10 @@ public class PlayerCombat : MonoBehaviour
     {
         sheathed = false;
 
+        // Disables the shield used for regular movement
+        movementShield.SetActive(false);
+        // Enables the shield used for combat
+        combatShield.SetActive(true);
         // Play an animation
         animator.SetTrigger("DrawWeapon");
         // Place weapon in hand
@@ -171,6 +178,10 @@ public class PlayerCombat : MonoBehaviour
     {
         sheathed = true;
 
+        // Disables the shield used for combat
+        combatShield.SetActive(false);
+        // Enables the shield used for regular movement
+        movementShield.SetActive(true);
         // Play an animation
         animator.SetTrigger("SheathWeapon");
         // Place weapon in sheath
