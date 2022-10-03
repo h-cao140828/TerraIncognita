@@ -130,6 +130,7 @@ namespace StarterAssets
         bool openInventory = false;
         bool openSkills = false;
 
+        public bool canMove = true;
 
         private void Awake()
         {
@@ -169,7 +170,12 @@ namespace StarterAssets
 
             JumpAndGravity();
             GroundedCheck();
-            Move();
+
+            // Player can move if conditon is true
+            if (canMove)
+            {
+                Move();
+            }
 
             // Runs the function that handles all interaction
             Interact();
@@ -461,6 +467,16 @@ namespace StarterAssets
                     Debug.Log("Closed skill menu");
                 }
             }
+        }
+
+        public void AbleMove()
+        {
+            canMove = true;
+        }
+
+        public void UnableMove()
+        {
+            canMove = false;
         }
     }
 }

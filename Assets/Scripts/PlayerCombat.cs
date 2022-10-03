@@ -13,8 +13,7 @@ public class PlayerCombat : MonoBehaviour
     GameObject currentWeaponInSheath;
     StarterAssets.ThirdPersonController controller;
 
-    public GameObject combatShield;
-    public GameObject movementShield;
+    public GameObject shield;
     public Animator animator;
     public bool sheathed = true;
 
@@ -28,6 +27,18 @@ public class PlayerCombat : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        // Check if a combat animation is played
+        if (animator.GetCurrentAnimatorStateInfo(1).IsTag("Combat"))
+        {
+            // Prevents player from moving during the animation
+            controller.UnableMove();
+        }
+        else
+        {
+            // Allows player to move if not performing a combat animation
+            controller.AbleMove();
+        }
+
         var keyboard = Keyboard.current;
         var mouse = Mouse.current;
         if (keyboard != null)
@@ -169,12 +180,8 @@ public class PlayerCombat : MonoBehaviour
     {
         sheathed = false;
 
-        animator.SetLayerWeight(0, 0);
-
-        // Disables the shield used for regular movement
-        movementShield.SetActive(false);
-        // Enables the shield used for combat
-        combatShield.SetActive(true);
+        // Places shield into combat ready position
+        shield.transform.localRotation = Quaternion.Euler(-20.104f, -194.27f, -254.195f);
         // Play an animation
         animator.SetTrigger("DrawWeapon");
         // Place weapon in hand
@@ -187,10 +194,8 @@ public class PlayerCombat : MonoBehaviour
     {
         sheathed = true;
 
-        // Disables the shield used for combat
-        combatShield.SetActive(false);
-        // Enables the shield used for regular movement
-        movementShield.SetActive(true);
+        // Places shield into normal position
+        shield.transform.localRotation = Quaternion.Euler(-4.071f, -217.456f, -179.508f);
         // Play an animation
         animator.SetTrigger("SheathWeapon");
         // Place weapon in sheath
