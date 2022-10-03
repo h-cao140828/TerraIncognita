@@ -11,6 +11,7 @@ public class PlayerCombat : MonoBehaviour
 
     GameObject currentWeaponInHand;
     GameObject currentWeaponInSheath;
+    StarterAssets.ThirdPersonController controller;
 
     public GameObject combatShield;
     public GameObject movementShield;
@@ -21,6 +22,7 @@ public class PlayerCombat : MonoBehaviour
     void Start()
     {
         currentWeaponInSheath = Instantiate(weapon, weaponSheath.transform);
+        controller = GetComponent<StarterAssets.ThirdPersonController>();
     }
 
     // Update is called once per frame
@@ -30,73 +32,78 @@ public class PlayerCombat : MonoBehaviour
         var mouse = Mouse.current;
         if (keyboard != null)
         {
-            // check if press "T"
-            if (keyboard.tKey.wasPressedThisFrame)
+            // Checks if the player is grounded
+            if (controller.Grounded)
             {
-                if (sheathed)
+                // check if press "T"
+                if (keyboard.tKey.wasPressedThisFrame)
                 {
-                    DrawWeapon();
+                    if (sheathed)
+                    {
+                        DrawWeapon();
+                    }
+                    else
+                    {
+                        SheathWeapon();
+                    }
                 }
-                else
+
+                if (keyboard.tabKey.wasPressedThisFrame)
                 {
-                    SheathWeapon();
+                    // Checks if the player has their weapon sheathed
+                    if (sheathed)
+                    {
+                        DrawWeapon();
+                        Target();
+                    }
+                    else
+                    {
+                        Target();
+                    }
                 }
-            }
 
-            if (keyboard.tabKey.wasPressedThisFrame)
-            {
-                // Checks if the player has their weapon sheathed
-                if (sheathed)
+                // Checks if the player used a mouse button and has their weapon drawn
+                if (mouse.rightButton.isPressed && !sheathed)
                 {
-                    DrawWeapon();
-                    Target();
+                    Block(true);
                 }
-                else
+                else if (mouse.rightButton.wasReleasedThisFrame && !sheathed)
                 {
-                    Target();
+                    Block(false);
+                }
+
+                if (mouse.leftButton.wasPressedThisFrame && !sheathed)
+                {
+                    MeleeAttack();
+                }
+
+                // Checks if the player enter a keyboard key while having their weapon drawn
+                if (keyboard.digit1Key.wasPressedThisFrame && !sheathed)
+                {
+                    UseSkill(0);
+                }
+                if (keyboard.digit2Key.wasPressedThisFrame && !sheathed)
+                {
+                    UseSkill(1);
+                }
+                if (keyboard.digit3Key.wasPressedThisFrame && !sheathed)
+                {
+                    UseSkill(2);
+                }
+                if (keyboard.qKey.wasPressedThisFrame && !sheathed)
+                {
+                    PetSkill(0);
+                }
+                if (keyboard.eKey.wasPressedThisFrame && !sheathed)
+                {
+                    PetSkill(1);
+                }
+                if (keyboard.leftCtrlKey.wasPressedThisFrame && !sheathed)
+                {
+                    DeployBarrier();
                 }
             }
-
-            // Checks if the player used a mouse button and has their weapon drawn
-            if (mouse.rightButton.isPressed && !sheathed)
-            {
-                Block(true);
-            }
-            else if (mouse.rightButton.wasReleasedThisFrame && !sheathed)
-            {
-                Block(false);
-            }
-
-            if (mouse.leftButton.wasPressedThisFrame && !sheathed)
-            {
-                MeleeAttack();
-            }
-
-            // Checks if the player enter a keyboard key while having their weapon drawn
-            if (keyboard.digit1Key.wasPressedThisFrame && !sheathed)
-            {
-                UseSkill(0);
-            }
-            if (keyboard.digit2Key.wasPressedThisFrame && !sheathed)
-            {
-                UseSkill(1);
-            }
-            if (keyboard.digit3Key.wasPressedThisFrame && !sheathed)
-            {
-                UseSkill(2);
-            }
-            if (keyboard.qKey.wasPressedThisFrame && !sheathed)
-            {
-                PetSkill(0);
-            }
-            if (keyboard.eKey.wasPressedThisFrame && !sheathed)
-            {
-                PetSkill(1);
-            }
-            if (keyboard.leftCtrlKey.wasPressedThisFrame && !sheathed)
-            {
-                DeployBarrier();
-            }
+            
 
         }
     }
@@ -161,6 +168,8 @@ public class PlayerCombat : MonoBehaviour
     public void DrawWeapon()
     {
         sheathed = false;
+
+        animator.SetLayerWeight(0, 0);
 
         // Disables the shield used for regular movement
         movementShield.SetActive(false);
