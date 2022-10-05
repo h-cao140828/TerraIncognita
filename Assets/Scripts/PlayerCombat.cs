@@ -39,83 +39,47 @@ public class PlayerCombat : MonoBehaviour
             controller.AbleMove();
         }
 
+
+        // Checks if the player is grounded
+        if (controller.Grounded)
+        {
+            Combat();
+            Target();
+            Attack();
+            Defend();
+        }
+
+    }
+
+    void Attack()
+    {
         var keyboard = Keyboard.current;
         var mouse = Mouse.current;
-        if (keyboard != null)
+        if (mouse.leftButton.wasPressedThisFrame && !sheathed)
         {
-            // Checks if the player is grounded
-            if (controller.Grounded)
-            {
-                // check if press "T"
-                if (keyboard.tKey.wasPressedThisFrame)
-                {
-                    if (sheathed)
-                    {
-                        DrawWeapon();
-                    }
-                    else
-                    {
-                        SheathWeapon();
-                    }
-                }
+            MeleeAttack();
+        }
 
-                if (keyboard.tabKey.wasPressedThisFrame)
-                {
-                    // Checks if the player has their weapon sheathed
-                    if (sheathed)
-                    {
-                        DrawWeapon();
-                        Target();
-                    }
-                    else
-                    {
-                        Target();
-                    }
-                }
-
-                // Checks if the player used a mouse button and has their weapon drawn
-                if (mouse.rightButton.isPressed && !sheathed)
-                {
-                    Block(true);
-                }
-                else if (mouse.rightButton.wasReleasedThisFrame && !sheathed)
-                {
-                    Block(false);
-                }
-
-                if (mouse.leftButton.wasPressedThisFrame && !sheathed)
-                {
-                    MeleeAttack();
-                }
-
-                // Checks if the player enter a keyboard key while having their weapon drawn
-                if (keyboard.digit1Key.wasPressedThisFrame && !sheathed)
-                {
-                    UseSkill(0);
-                }
-                if (keyboard.digit2Key.wasPressedThisFrame && !sheathed)
-                {
-                    UseSkill(1);
-                }
-                if (keyboard.digit3Key.wasPressedThisFrame && !sheathed)
-                {
-                    UseSkill(2);
-                }
-                if (keyboard.qKey.wasPressedThisFrame && !sheathed)
-                {
-                    PetSkill(0);
-                }
-                if (keyboard.eKey.wasPressedThisFrame && !sheathed)
-                {
-                    PetSkill(1);
-                }
-                if (keyboard.leftCtrlKey.wasPressedThisFrame && !sheathed)
-                {
-                    DeployBarrier();
-                }
-            }
-            
-
+        // Checks if the player enter a keyboard key while having their weapon drawn
+        if (keyboard.digit1Key.wasPressedThisFrame && !sheathed)
+        {
+            UseSkill(0);
+        }
+        if (keyboard.digit2Key.wasPressedThisFrame && !sheathed)
+        {
+            UseSkill(1);
+        }
+        if (keyboard.digit3Key.wasPressedThisFrame && !sheathed)
+        {
+            UseSkill(2);
+        }
+        if (keyboard.qKey.wasPressedThisFrame && !sheathed)
+        {
+            PetSkill(0);
+        }
+        if (keyboard.eKey.wasPressedThisFrame && !sheathed)
+        {
+            PetSkill(1);
         }
     }
 
@@ -150,6 +114,27 @@ public class PlayerCombat : MonoBehaviour
         // Applys the skill effect
     }
 
+    void Defend()
+    {
+        var keyboard = Keyboard.current;
+        var mouse = Mouse.current;
+        // Checks if the player used a mouse button and has their weapon drawn
+        if (mouse.rightButton.isPressed && !sheathed)
+        {
+            Block(true);
+        }
+        else if (mouse.rightButton.wasReleasedThisFrame && !sheathed)
+        {
+            Block(false);
+        }
+
+
+        if (keyboard.leftCtrlKey.wasPressedThisFrame && !sheathed)
+        {
+            DeployBarrier();
+        }
+    }
+
     // A function for handling blocking
     void Block(bool blocking)
     {
@@ -169,11 +154,46 @@ public class PlayerCombat : MonoBehaviour
 
     void Target()
     {
+        var keyboard = Keyboard.current;
+        if (keyboard.tabKey.wasPressedThisFrame)
+        {
+            // Checks if the player has their weapon sheathed
+            if (sheathed)
+            {
+                DrawWeapon();
+                LockOn();
+            }
+            else
+            {
+                LockOn();
+            }
+        }
+    }
+
+    void LockOn()
+    {
         // Placeholder 
         Debug.Log("Targeting system not implemented yet");
 
         // Code to handle targeting a nearby attackable target
         // Code to cycle through available targets.
+    }
+
+    void Combat()
+    {
+        var keyboard = Keyboard.current;
+        // check if press "T"
+        if (keyboard.tKey.wasPressedThisFrame)
+        {
+            if (sheathed)
+            {
+                DrawWeapon();
+            }
+            else
+            {
+                SheathWeapon();
+            }
+        }
     }
 
     public void DrawWeapon()
