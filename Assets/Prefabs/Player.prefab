@@ -4831,6 +4831,7 @@ MonoBehaviour:
   shield: {fileID: 6087442302739742558}
   animator: {fileID: 2913097002160907031}
   sheathed: 1
+  isAttacking: 0
 --- !u!1 &8525282924285351819
 GameObject:
   m_ObjectHideFlags: 0

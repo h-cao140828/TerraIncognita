@@ -11,6 +11,8 @@ GameObject:
   - component: {fileID: 4000011191723762}
   - component: {fileID: 33000011591730632}
   - component: {fileID: 23000011493205480}
+  - component: {fileID: -4600478208418926456}
+  - component: {fileID: 3291024972294958622}
   m_Layer: 0
   m_Name: RB_Falchion
   m_TagString: Untagged
@@ -83,3 +85,28 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!65 &-4600478208418926456
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1000011335475624}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.050266452, y: 1.0730454, z: 0.16456108}
+  m_Center: {x: 0, y: -0.64289004, z: 0.0000003799796}
+--- !u!114 &3291024972294958622
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1000011335475624}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6e3140d2b764d24479323ad3f509137d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
