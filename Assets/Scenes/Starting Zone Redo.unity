@@ -8272,7 +8272,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8486640087730480092, guid: 571ddae38d646d347990eda8c0ce645e, type: 3}
       propertyPath: SprintSpeed
-      value: 30
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 8486640087730480093, guid: 571ddae38d646d347990eda8c0ce645e, type: 3}
       propertyPath: m_SlopeLimit
