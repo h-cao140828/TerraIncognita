@@ -16,6 +16,7 @@ public class PlayerCombat : MonoBehaviour
     public GameObject shield;
     public Animator animator;
     public bool sheathed = true;
+    public bool isAttacking = false;
 
     // Start is called before the first frame update
     void Start()
@@ -225,4 +226,13 @@ public class PlayerCombat : MonoBehaviour
 
     }
 
+    public void IsAttacking()
+    {
+        isAttacking = true;
+    }
+
+    public void NotAttacking()
+    {
+        isAttacking = false;
+    }
 }
