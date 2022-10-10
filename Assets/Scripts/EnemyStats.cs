@@ -35,6 +35,7 @@ public class EnemyStats : MonoBehaviour
             currentHealth = 0;
             animator.SetBool("IsDead", true);
             // handle death
+            GetComponent<EnemyController>().enabled = false;
         }
     }
 }
