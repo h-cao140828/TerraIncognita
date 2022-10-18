@@ -12,6 +12,9 @@ public class PlayerStats : MonoBehaviour
 
     Animator animator;
 
+    // Amount of damage the player can block
+    public float blockReduction = 0.7f;
+
     // Start is called before the first frame update
     void Start()
     {
