@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.AI;
 
 public class EnemyStats : MonoBehaviour
 {
@@ -28,14 +29,33 @@ public class EnemyStats : MonoBehaviour
     {
         currentHealth -= damage;
 
-        animator.SetTrigger("Damage");
-
         if (currentHealth <= 0)
         {
             currentHealth = 0;
-            animator.SetBool("IsDead", true);
+            animator.SetTrigger("Death");
             // handle death
-            GetComponent<EnemyController>().enabled = false;
+            GetComponent<NavMeshAgent>().enabled = false;
         }
+        else
+        {
+            animator.SetTrigger("Damage");
+        }
+
     }
+
+    //public void TakeDamage(int damage)
+    //{
+    //    currentHealth -= damage;
+
+    //    animator.SetTrigger("Damage");
+
+    //    if (currentHealth <= 0)
+    //    {
+    //        currentHealth = 0;
+    //        animator.SetBool("IsDead", true);
+    //        // handle death
+    //        GetComponent<EnemyController>().enabled = false;
+    //    }
+
+    //}
 }

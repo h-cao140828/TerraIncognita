@@ -26,7 +26,7 @@ public class DamageEnemyCollider : MonoBehaviour
             hasCollide = true;
 
             EnemyStats enemyStats = other.GetComponent<EnemyStats>();
-
+            Debug.Log(enemyStats.name);
             if (enemyStats != null)
             {
                 enemyStats.TakeDamage(currentWeaponDamage);
