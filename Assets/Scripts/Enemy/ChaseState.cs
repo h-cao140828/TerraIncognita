@@ -14,6 +14,7 @@ public class ChaseState : StateMachineBehaviour
         agent = animator.GetComponent<NavMeshAgent>();
         player = GameObject.FindGameObjectWithTag("Player").GetComponentInChildren<CharacterController>().transform;
         agent.speed = 3.5f;
+        agent.stoppingDistance = 2f;
     }
 
     // OnStateUpdate is called on each Update frame between OnStateEnter and OnStateExit callbacks
@@ -23,6 +24,8 @@ public class ChaseState : StateMachineBehaviour
         float targetDistance = Vector3.Distance(player.position, animator.transform.position);
         if (targetDistance > 15)
             animator.SetBool("IsChase", false);
+        if (targetDistance < 5)
+            agent.speed = 1.5f;
         if (targetDistance < 2.5f)
             animator.SetBool("IsAttack", true);
     }
@@ -32,16 +35,4 @@ public class ChaseState : StateMachineBehaviour
     {
         agent.SetDestination(animator.transform.position);
     }
-
-    // OnStateMove is called right after Animator.OnAnimatorMove()
-    //override public void OnStateMove(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
-    //{
-    //    // Implement code that processes and affects root motion
-    //}
-
-    // OnStateIK is called right after Animator.OnAnimatorIK()
-    //override public void OnStateIK(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
-    //{
-    //    // Implement code that sets up animation IK (inverse kinematics)
-    //}
 }

@@ -35,7 +35,6 @@ public class Enemy : MonoBehaviour
             currentHealth = 0;
             animator.SetTrigger("Death");
             GetComponent<Collider>().enabled = false;
-            GetComponent<NavMeshAgent>().enabled = false;
         }
         else
         {
