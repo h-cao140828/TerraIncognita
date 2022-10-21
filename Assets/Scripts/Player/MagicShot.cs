@@ -17,7 +17,7 @@ public class MagicShot : MonoBehaviour
         Destroy(transform.GetComponent<Rigidbody>());
         if (other.tag == "Enemy")
         {
-            other.GetComponent<EnemyStats>().TakeDamage(damageDealt);
+            other.GetComponent<Enemy>().TakeDamage(damageDealt);
         }
     }
 }

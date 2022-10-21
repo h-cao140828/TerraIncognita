@@ -13,10 +13,7 @@ public class DamageEnemyCollider : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        if (gameObject.transform.root.CompareTag("Player"))
-        {
             playerCombat = gameObject.transform.root.GetComponentInChildren<PlayerCombat>();
-        }
     }
 
     private void OnTriggerEnter(Collider other)
@@ -24,18 +21,17 @@ public class DamageEnemyCollider : MonoBehaviour
         if (other.tag == "Enemy" && playerCombat.isAttacking && !hasCollide)
         {
             hasCollide = true;
+            Enemy enemy = other.GetComponent<Enemy>();
 
-            EnemyStats enemyStats = other.GetComponent<EnemyStats>();
-            Debug.Log(enemyStats.name);
-            if (enemyStats != null)
+            if (enemy != null)
             {
-                enemyStats.TakeDamage(currentWeaponDamage);
+                enemy.TakeDamage(currentWeaponDamage);
             }
         }
 
     }
 
-    private void LateUpdate()
+    private void Update()
     {
         ResetHasCollider();
     }
