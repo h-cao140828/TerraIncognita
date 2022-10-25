@@ -8,7 +8,7 @@ public class PlayerStats : MonoBehaviour
     public int maxHealth;
     public int currentHealth;
 
-    public Canvas combatUI;
+    public Canvas playerUI;
     public HealthBar healthBar;
 
     PlayerCombat playerCombat;
@@ -30,9 +30,9 @@ public class PlayerStats : MonoBehaviour
     private void Update()
     {
         if (!playerCombat.sheathed)
-            combatUI.gameObject.SetActive(true);
+            playerUI.gameObject.transform.Find("Vitality Bar").gameObject.SetActive(true);
         else
-            combatUI.gameObject.SetActive(false);
+            playerUI.gameObject.transform.Find("Vitality Bar").gameObject.SetActive(false);
     }
 
     int SetMaxHealthFromHealthLevel()
@@ -56,6 +56,10 @@ public class PlayerStats : MonoBehaviour
         else
         {
             animator.SetTrigger("Damage");
+            if (playerCombat.sheathed)
+                animator.SetBool("IsCombat", false);
+            else
+                animator.SetBool("IsCombat", true);
         }
     }
 
