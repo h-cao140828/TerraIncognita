@@ -58,4 +58,22 @@ public class PlayerStats : MonoBehaviour
             animator.SetTrigger("Damage");
         }
     }
+
+    public void TakeReducedDamage(int damage)
+    {
+        currentHealth -= (damage - Mathf.RoundToInt(damage * blockReduction));
+        healthBar.SetCurrentHealth(currentHealth);
+
+        if (currentHealth <= 0)
+        {
+            currentHealth = 0;
+            animator.SetTrigger("Death");
+            GetComponent<BoxCollider>().enabled = false;
+            GetComponent<CharacterController>().enabled = false;
+        }
+        else
+        {
+            animator.SetTrigger("Blocked");
+        }
+    }
 }

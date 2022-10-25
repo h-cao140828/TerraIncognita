@@ -17,6 +17,7 @@ public class PlayerCombat : MonoBehaviour
     public Animator animator;
     public bool sheathed = true;
     public bool isAttacking = false;
+    public bool isBlocking = false;
 
     // Start is called before the first frame update
     void Start()
@@ -122,11 +123,13 @@ public class PlayerCombat : MonoBehaviour
         // Checks if the player used a mouse button and has their weapon drawn
         if (mouse.rightButton.isPressed && !sheathed)
         {
-            Block(true);
+            isBlocking = true;
+            Block(isBlocking);
         }
         else if (mouse.rightButton.wasReleasedThisFrame && !sheathed)
         {
-            Block(false);
+            isBlocking = false;
+            Block(isBlocking);
         }
 
 
@@ -235,4 +238,5 @@ public class PlayerCombat : MonoBehaviour
     {
         isAttacking = false;
     }
+
 }
