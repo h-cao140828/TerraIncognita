@@ -20,15 +20,29 @@ public class PauseMenu : MonoBehaviour
         }
     }
 
-    void Resume(){
+    public void Resume(){
         pauseMenuUI.SetActive(false);
         Time.timeScale = 1f;
         gamePaused = false;
+        Cursor.lockState = CursorLockMode.Locked;
     }
 
     void Paused(){
         pauseMenuUI.SetActive(true);
         Time.timeScale = 0f;
         gamePaused = true;
+        Cursor.lockState = CursorLockMode.None;
+    }
+
+    public void Menu(){
+        pauseMenuUI.SetActive(false);
+        Time.timeScale = 1f;
+        gamePaused = false;
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex - 1);
+    }
+    
+    public void Quit(){
+        Debug.Log("Quit");
+        Application.Quit();
     }
 }
