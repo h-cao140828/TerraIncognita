@@ -6,7 +6,7 @@ public class Goblin : Enemy
 {
     private void Awake()
     {
-        healthLevel = 20;
+        healthLevel = 10;
         base.Start();
     }
 

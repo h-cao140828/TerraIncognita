@@ -47,9 +47,8 @@ public class PlayerCombat : MonoBehaviour
         {
             Combat();
             Target();
-            Attack();
-
         }
+        Attack();
         Defend();
     }
 

@@ -1362,10 +1362,10 @@ GameObject:
   - component: {fileID: 2551151840830151031}
   - component: {fileID: 5884205019643830803}
   - component: {fileID: 5884205019643830830}
-  - component: {fileID: 5884205019643830829}
   - component: {fileID: 5884205019643830801}
   - component: {fileID: 6160366683190023089}
   - component: {fileID: 4397026762691156285}
+  - component: {fileID: 7251049650374220157}
   m_Layer: 6
   m_Name: EnemyCharacter
   m_TagString: Enemy
@@ -1440,21 +1440,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isAttacking: 0
---- !u!114 &5884205019643830829
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2551151840822733541}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 102eb0c33c2ef2349b2a9fa598e7eb2c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  healthLevel: 10
-  maxHealth: 0
-  currentHealth: 0
 --- !u!195 &5884205019643830801
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -1507,6 +1492,21 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   characterCollider: {fileID: 5884205019643830803}
   characterBlockerCollider: {fileID: 5578009461407018600}
+--- !u!114 &7251049650374220157
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2551151840822733541}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ac274fe431fc36f46bff28697ec50a3e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  healthLevel: 10
+  maxHealth: 0
+  currentHealth: 0
 --- !u!1 &2551151840822733543
 GameObject:
   m_ObjectHideFlags: 0
@@ -1952,7 +1952,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6165715724248091782}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0.67, z: 0.7}
+  m_LocalPosition: {x: 0, y: 0.67, z: 0.81}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1984,7 +1984,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 68014cb86a7d13949b3b088884283305, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  hasCollide: 0
   currentWeaponDamage: 25
 --- !u!1 &9036434688351184103
 GameObject:
