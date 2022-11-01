@@ -205,6 +205,7 @@ public class PlayerCombat : MonoBehaviour
 
         // Places shield into combat ready position
         shield.transform.localRotation = Quaternion.Euler(-20.104f, -194.27f, -254.195f);
+        AudioManager.instance.Play("SwordDraw");
         // Play an animation
         animator.SetTrigger("DrawWeapon");
         // Place weapon in hand

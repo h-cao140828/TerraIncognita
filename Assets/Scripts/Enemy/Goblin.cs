@@ -10,9 +10,24 @@ public class Goblin : Enemy
         base.Start();
     }
 
-    // Update is called once per frame
-    void Update()
+
+    public override void TakeDamage(int damage)
     {
-        
+        currentHealth -= damage;
+
+        if (currentHealth <= 0)
+        {
+            currentHealth = 0;
+
+            AudioManager.instance.Play("GoblinDeath");
+            animator.SetTrigger("Death");
+            GetComponent<Collider>().enabled = false;
+            GetComponent<UnityEngine.AI.NavMeshAgent>().enabled = false;
+        }
+        else
+        {
+            AudioManager.instance.Play("GoblinHurt");
+            animator.SetTrigger("Damage");
+        }
     }
 }

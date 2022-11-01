@@ -25,6 +25,7 @@ public class DamageEnemyCollider : MonoBehaviour
 
             if (enemy != null)
             {
+                AudioManager.instance.Play("SwordHit");
                 enemy.TakeDamage(currentWeaponDamage);
             }
         }

@@ -49,12 +49,14 @@ public class PlayerStats : MonoBehaviour
         if (currentHealth <= 0)
         {
             currentHealth = 0;
+            AudioManager.instance.Play("PlayerDeath");
             animator.SetTrigger("Death");
             GetComponent<BoxCollider>().enabled = false;
             GetComponent<CharacterController>().enabled = false;
         }
         else
         {
+            AudioManager.instance.Play("PlayerHurt");
             animator.SetTrigger("Damage");
             if (playerCombat.sheathed)
                 animator.SetBool("IsCombat", false);
@@ -71,12 +73,14 @@ public class PlayerStats : MonoBehaviour
         if (currentHealth <= 0)
         {
             currentHealth = 0;
+            AudioManager.instance.Play("PlayerDeath");
             animator.SetTrigger("Death");
             GetComponent<BoxCollider>().enabled = false;
             GetComponent<CharacterController>().enabled = false;
         }
         else
         {
+            AudioManager.instance.Play("ShieldBlock");
             animator.SetTrigger("Blocked");
         }
     }
