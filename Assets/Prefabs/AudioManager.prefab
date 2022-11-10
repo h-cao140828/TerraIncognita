@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1 &3704869215459274056
+--- !u!1 &499813634795919917
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -8,8 +8,8 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 3704869215459274058}
-  - component: {fileID: 3704869215459274057}
+  - component: {fileID: 499813634795919919}
+  - component: {fileID: 499813634795919916}
   m_Layer: 0
   m_Name: AudioManager
   m_TagString: Untagged
@@ -17,13 +17,13 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &3704869215459274058
+--- !u!4 &499813634795919919
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3704869215459274056}
+  m_GameObject: {fileID: 499813634795919917}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -2.4154367, y: 0.62986684, z: -0.2355296}
   m_LocalScale: {x: 1, y: 1, z: 1}
@@ -32,13 +32,13 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &3704869215459274057
+--- !u!114 &499813634795919916
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3704869215459274056}
+  m_GameObject: {fileID: 499813634795919917}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 32a90073cfb54004c8ce63a3bbbc4a14, type: 3}
@@ -59,10 +59,52 @@ MonoBehaviour:
     pitch: 1
     loop: 0
     source: {fileID: 0}
-  - name: 
-    clip: {fileID: 0}
+  - name: PlayerHurt
+    clip: {fileID: 8300000, guid: 5f2abcff24ad1db49a9163c6000b4440, type: 3}
     mixer: {fileID: 0}
-    volume: 0
-    pitch: 0
+    volume: 1
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+  - name: PlayerDeath
+    clip: {fileID: 8300000, guid: 92fcc3700a8770c49a69fb1f03e48d50, type: 3}
+    mixer: {fileID: 0}
+    volume: 1
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+  - name: SwordHit
+    clip: {fileID: 8300000, guid: 7ed22a96f3738a14ca3354c200c956a6, type: 3}
+    mixer: {fileID: 0}
+    volume: 1
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+  - name: SwordDraw
+    clip: {fileID: 8300000, guid: 1e9df1a76e6051a418aaae5abc73e9f0, type: 3}
+    mixer: {fileID: 0}
+    volume: 1
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+  - name: ShieldBlock
+    clip: {fileID: 8300000, guid: fac7391e8ba48bb42b36a66e78072062, type: 3}
+    mixer: {fileID: 0}
+    volume: 1
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+  - name: GoblinHurt
+    clip: {fileID: 8300000, guid: 2aefbd4846924284384863093141691c, type: 3}
+    mixer: {fileID: 0}
+    volume: 1
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+  - name: GoblinDeath
+    clip: {fileID: 8300000, guid: 01162a814344cce4fa2cb5e450d0c639, type: 3}
+    mixer: {fileID: 0}
+    volume: 1
+    pitch: 1
     loop: 0
     source: {fileID: 0}
