@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class Goblin : Enemy
 {
+    public PlayerStats playerStats;
+
     private void Awake()
     {
         healthLevel = 10;
@@ -23,6 +25,7 @@ public class Goblin : Enemy
             animator.SetTrigger("Death");
             GetComponent<Collider>().enabled = false;
             GetComponent<UnityEngine.AI.NavMeshAgent>().enabled = false;
+            playerStats.AwardedSP(25);
         }
         else
         {

@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class Dragon : Enemy
 {
+    public PlayerStats playerStats;
+
     private void Awake()
     {
         healthLevel = 20;
@@ -22,6 +24,7 @@ public class Dragon : Enemy
             animator.SetTrigger("Death");
             GetComponent<Collider>().enabled = false;
             GetComponent<UnityEngine.AI.NavMeshAgent>().enabled = false;
+            playerStats.AwardedSP(100);
         }
         else
         {

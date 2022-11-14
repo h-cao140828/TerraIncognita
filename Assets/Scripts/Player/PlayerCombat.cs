@@ -46,7 +46,7 @@ public class PlayerCombat : MonoBehaviour
         if (controller.Grounded)
         {
             Combat();
-            Target();
+            //Target();
         }
         Attack();
         Defend();
@@ -62,26 +62,26 @@ public class PlayerCombat : MonoBehaviour
         }
 
         // Checks if the player enter a keyboard key while having their weapon drawn
-        if (keyboard.digit1Key.wasPressedThisFrame && !sheathed)
-        {
-            UseSkill(0);
-        }
-        if (keyboard.digit2Key.wasPressedThisFrame && !sheathed)
-        {
-            UseSkill(1);
-        }
-        if (keyboard.digit3Key.wasPressedThisFrame && !sheathed)
-        {
-            UseSkill(2);
-        }
-        if (keyboard.qKey.wasPressedThisFrame && !sheathed)
-        {
-            PetSkill(0);
-        }
-        if (keyboard.eKey.wasPressedThisFrame && !sheathed)
-        {
-            PetSkill(1);
-        }
+        //if (keyboard.digit1Key.wasPressedThisFrame && !sheathed)
+        //{
+        //    UseSkill(0);
+        //}
+        //if (keyboard.digit2Key.wasPressedThisFrame && !sheathed)
+        //{
+        //    UseSkill(1);
+        //}
+        //if (keyboard.digit3Key.wasPressedThisFrame && !sheathed)
+        //{
+        //    UseSkill(2);
+        //}
+        //if (keyboard.qKey.wasPressedThisFrame && !sheathed)
+        //{
+        //    PetSkill(0);
+        //}
+        //if (keyboard.eKey.wasPressedThisFrame && !sheathed)
+        //{
+        //    PetSkill(1);
+        //}
     }
 
     void MeleeAttack()
@@ -93,27 +93,27 @@ public class PlayerCombat : MonoBehaviour
     }
 
     // A function for using player skills
-    void UseSkill(int skillKey)
-    {
-        // Place holder 
-        skillKey += 1;
-        Debug.Log("No skill equipped on " + skillKey + " slot");
+    //void UseSkill(int skillKey)
+    //{
+    //    // Place holder 
+    //    skillKey += 1;
+    //    Debug.Log("No skill equipped on " + skillKey + " slot");
 
-        // Plays the appropriate skill animation
-        // Detects a target in range of skill
-        // Applys the skill effect
-    }
+    //    // Plays the appropriate skill animation
+    //    // Detects a target in range of skill
+    //    // Applys the skill effect
+    //}
 
     // A function for using companion skills
-    void PetSkill(int skillKey)
-    {
-        // Place holder 
-        skillKey += 1;
-        Debug.Log("No pet skill equipped on " + skillKey + " slot");
-        // Plays the appropriate skill
-        // Detects a target in range of skill
-        // Applys the skill effect
-    }
+    //void PetSkill(int skillKey)
+    //{
+    //    // Place holder 
+    //    skillKey += 1;
+    //    Debug.Log("No pet skill equipped on " + skillKey + " slot");
+    //    // Plays the appropriate skill
+    //    // Detects a target in range of skill
+    //    // Applys the skill effect
+    //}
 
     void Defend()
     {
@@ -132,10 +132,10 @@ public class PlayerCombat : MonoBehaviour
         }
 
 
-        if (keyboard.leftCtrlKey.wasPressedThisFrame && !sheathed)
-        {
-            DeployBarrier();
-        }
+        //if (keyboard.leftCtrlKey.wasPressedThisFrame && !sheathed)
+        //{
+        //    DeployBarrier();
+        //}
     }
 
     // A function for handling blocking
@@ -146,41 +146,41 @@ public class PlayerCombat : MonoBehaviour
         // Apply reduced damage taken
     }
 
-    void DeployBarrier()
-    {
-        // Play the animation for deploying a barrier
-        animator.SetTrigger("DeployBarrier");
-        // Code for negating damage
-        // Code for handling barrier cooldown
-        // Code for destroying the barrier object
-    }
+    //void DeployBarrier()
+    //{
+    //    // Play the animation for deploying a barrier
+    //    animator.SetTrigger("DeployBarrier");
+    //    // Code for negating damage
+    //    // Code for handling barrier cooldown
+    //    // Code for destroying the barrier object
+    //}
 
-    void Target()
-    {
-        var keyboard = Keyboard.current;
-        if (keyboard.tabKey.wasPressedThisFrame)
-        {
-            // Checks if the player has their weapon sheathed
-            if (sheathed)
-            {
-                DrawWeapon();
-                LockOn();
-            }
-            else
-            {
-                LockOn();
-            }
-        }
-    }
+    //void Target()
+    //{
+    //    var keyboard = Keyboard.current;
+    //    if (keyboard.tabKey.wasPressedThisFrame)
+    //    {
+    //        // Checks if the player has their weapon sheathed
+    //        if (sheathed)
+    //        {
+    //            DrawWeapon();
+    //            LockOn();
+    //        }
+    //        else
+    //        {
+    //            LockOn();
+    //        }
+    //    }
+    //}
 
-    void LockOn()
-    {
-        // Placeholder 
-        Debug.Log("Targeting system not implemented yet");
+    //void LockOn()
+    //{
+    //    // Placeholder 
+    //    Debug.Log("Targeting system not implemented yet");
 
-        // Code to handle targeting a nearby attackable target
-        // Code to cycle through available targets.
-    }
+    //    // Code to handle targeting a nearby attackable target
+    //    // Code to cycle through available targets.
+    //}
 
     void Combat()
     {

@@ -7,6 +7,8 @@ public class PlayerStats : MonoBehaviour
 
     public int maxHealth;
     public int currentHealth;
+    public int attackDamage = 20;
+    public int defence;
 
     public Canvas playerUI;
     public HealthBar healthBar;
@@ -19,7 +21,7 @@ public class PlayerStats : MonoBehaviour
     public int healthLevel = 10;
     public int strengthLevel = 10;
     public int defenseLevel = 10;
-    public int intelligenceLevel = 10;
+    //public int intelligenceLevel = 10;
 
     public int spCount = 0;
 
@@ -44,11 +46,18 @@ public class PlayerStats : MonoBehaviour
             playerUI.gameObject.transform.Find("Vitality Bar").gameObject.SetActive(false);
     }
 
-    int SetMaxHealthFromHealthLevel()
+    public int SetMaxHealthFromHealthLevel()
     {
         maxHealth = healthLevel * 10;
         return maxHealth;
     }
+
+    public int setAttackDamage()
+    {
+        attackDamage = attackDamage + (attackDamage * Mathf.RoundToInt((float)(strengthLevel * 0.01)));
+        return attackDamage;
+    }
+
 
     public void TakeDamage(int damage)
     {

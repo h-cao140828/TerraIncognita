@@ -129,7 +129,7 @@ namespace StarterAssets
         PlayerCombat playerCombat;
         PlayerInteraction playerInteraction;
         bool openInventory = false;
-        bool openSkills = false;
+        bool openStats = false;
 
         public bool canMove = true;
 
@@ -174,7 +174,7 @@ namespace StarterAssets
             GroundedCheck();
 
             // Player can move if conditon is true
-            if (canMove)
+            if (canMove && !openStats)
             {
                 Move();
             }
@@ -182,7 +182,7 @@ namespace StarterAssets
             // Runs the function that handles all interaction
             Interact();
             Inventory();
-            SkillMenu();
+            StatsMenu();
         }
 
         private void LateUpdate()
@@ -448,15 +448,14 @@ namespace StarterAssets
             }
         }
 
-        public void SkillMenu()
+        public void StatsMenu()
         {
             var keyboard = Keyboard.current;
             if (keyboard.kKey.wasPressedThisFrame && playerCombat.sheathed)
             {
-                if (!openSkills)
+                if (!openStats)
                 {
-                    openSkills = true;
-                    Cursor.lockState = CursorLockMode.None;
+                    openStats = true;
                     // place holder
                     Debug.Log("Opened skill menu");
                     playerUI.gameObject.transform.Find("Stats Window").gameObject.SetActive(true);
@@ -464,8 +463,7 @@ namespace StarterAssets
                 }
                 else
                 {
-                    openSkills = false;
-                    Cursor.lockState = CursorLockMode.Locked;
+                    openStats = false;
                     // place holder
                     Debug.Log("Closed skill menu");
                     playerUI.gameObject.transform.Find("Stats Window").gameObject.SetActive(false);
@@ -481,6 +479,16 @@ namespace StarterAssets
         public void UnableMove()
         {
             canMove = false;
+        }
+
+        public void StatsClosed()
+        {
+            openStats = false;
+        }
+
+        public void StatsOpened()
+        {
+            openStats = true;
         }
     }
 }

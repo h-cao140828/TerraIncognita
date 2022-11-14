@@ -5,15 +5,17 @@ using UnityEngine;
 public class DamageEnemyCollider : MonoBehaviour
 {
     PlayerCombat playerCombat;
+    PlayerStats playerStats;
 
     bool hasCollide = false;
-
-    public int currentWeaponDamage = 25;
 
     // Start is called before the first frame update
     void Start()
     {
-            playerCombat = gameObject.transform.root.GetComponentInChildren<PlayerCombat>();
+        playerCombat = gameObject.transform.root.GetComponentInChildren<PlayerCombat>();
+        playerStats = gameObject.transform.root.GetComponentInChildren<PlayerStats>();
+
+
     }
 
     private void OnTriggerEnter(Collider other)
@@ -26,7 +28,7 @@ public class DamageEnemyCollider : MonoBehaviour
             if (enemy != null)
             {
                 AudioManager.instance.Play("SwordHit");
-                enemy.TakeDamage(currentWeaponDamage);
+                enemy.TakeDamage(playerStats.attackDamage);
             }
         }
 
