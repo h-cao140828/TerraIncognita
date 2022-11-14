@@ -124,6 +124,7 @@ namespace StarterAssets
             }
         }
 
+        public Canvas playerUI;
 
         PlayerCombat playerCombat;
         PlayerInteraction playerInteraction;
@@ -457,7 +458,7 @@ namespace StarterAssets
                     Cursor.lockState = CursorLockMode.None;
                     // place holder
                     Debug.Log("Opened skill menu");
-
+                    playerUI.gameObject.transform.Find("Stats Window").gameObject.SetActive(true);
                     // code for handling skills
                 }
                 else
@@ -466,6 +467,7 @@ namespace StarterAssets
                     Cursor.lockState = CursorLockMode.Locked;
                     // place holder
                     Debug.Log("Closed skill menu");
+                    playerUI.gameObject.transform.Find("Stats Window").gameObject.SetActive(false);
                 }
             }
         }
