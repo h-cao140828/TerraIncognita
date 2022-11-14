@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class PlayerStats : MonoBehaviour
 {
-    public int healthLevel = 10;
+
     public int maxHealth;
     public int currentHealth;
 
@@ -13,6 +13,12 @@ public class PlayerStats : MonoBehaviour
 
     PlayerCombat playerCombat;
     Animator animator;
+
+    public int healthLevel = 10;
+    public int strengthLevel = 10;
+    public int defenseLevel = 10;
+
+    public int spCount = 0;
 
     // Amount of damage the player can block
     public float blockReduction = 0.7f;
@@ -83,5 +89,10 @@ public class PlayerStats : MonoBehaviour
             AudioManager.instance.Play("ShieldBlock");
             animator.SetTrigger("Blocked");
         }
+    }
+
+    public void AwardedSP(int sp)
+    {
+        spCount += sp;
     }
 }
