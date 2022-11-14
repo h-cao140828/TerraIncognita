@@ -14,9 +14,12 @@ public class PlayerStats : MonoBehaviour
     PlayerCombat playerCombat;
     Animator animator;
 
+    public int playerLevel = 1;
+
     public int healthLevel = 10;
     public int strengthLevel = 10;
     public int defenseLevel = 10;
+    public int intelligenceLevel = 10;
 
     public int spCount = 0;
 

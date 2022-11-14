@@ -140,6 +140,7 @@ namespace StarterAssets
             {
                 _mainCamera = GameObject.FindGameObjectWithTag("MainCamera");
             }
+            playerUI.gameObject.transform.Find("Stats Window").gameObject.SetActive(false);
         }
 
         private void Start()
