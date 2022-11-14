@@ -24,7 +24,7 @@ public class Dragon : Enemy
             animator.SetTrigger("Death");
             GetComponent<Collider>().enabled = false;
             GetComponent<UnityEngine.AI.NavMeshAgent>().enabled = false;
-            playerStats.AwardedSP(100);
+            playerStats.AwardedSP(50);
         }
         else
         {

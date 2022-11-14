@@ -5,10 +5,10 @@ using UnityEngine;
 public class PlayerStats : MonoBehaviour
 {
 
-    public int maxHealth;
+    public int maxHealth = 100;
     public int currentHealth;
     public int attackDamage = 20;
-    public int defence;
+    public int defence = 5;
 
     public Canvas playerUI;
     public HealthBar healthBar;
@@ -18,15 +18,15 @@ public class PlayerStats : MonoBehaviour
 
     public int playerLevel = 1;
 
-    public int healthLevel = 10;
-    public int strengthLevel = 10;
-    public int defenseLevel = 10;
+    public int healthLevel = 1;
+    public int strengthLevel = 1;
+    public int defenseLevel = 1;
     //public int intelligenceLevel = 10;
 
     public int spCount = 0;
 
     // Amount of damage the player can block
-    public float blockReduction = 0.7f;
+    public float blockReduction = 0.3f;
 
     // Start is called before the first frame update
     void Start()
@@ -36,6 +36,8 @@ public class PlayerStats : MonoBehaviour
         maxHealth = SetMaxHealthFromHealthLevel();
         currentHealth = maxHealth;
         healthBar.SetMaxHealth(maxHealth);
+        attackDamage = setAttackDamage();
+        defence = setDefence();
     }
 
     private void Update()
@@ -48,19 +50,26 @@ public class PlayerStats : MonoBehaviour
 
     public int SetMaxHealthFromHealthLevel()
     {
-        maxHealth = healthLevel * 10;
+        maxHealth = maxHealth + (healthLevel * 25);
         return maxHealth;
     }
 
     public int setAttackDamage()
     {
-        attackDamage = attackDamage + (attackDamage * Mathf.RoundToInt((float)(strengthLevel * 0.01)));
+        attackDamage = attackDamage + (strengthLevel * 5);
         return attackDamage;
+    }
+
+    public int setDefence()
+    {
+        defence = defence + (defenseLevel * 2);
+        return defence;
     }
 
 
     public void TakeDamage(int damage)
     {
+        damage -= defence;
         currentHealth -= damage;
         healthBar.SetCurrentHealth(currentHealth);
 
@@ -85,7 +94,7 @@ public class PlayerStats : MonoBehaviour
 
     public void TakeReducedDamage(int damage)
     {
-        currentHealth -= (damage - Mathf.RoundToInt(damage * blockReduction));
+        currentHealth -= (damage - Mathf.RoundToInt(damage * blockReduction) - defence);
         healthBar.SetCurrentHealth(currentHealth);
 
         if (currentHealth <= 0)

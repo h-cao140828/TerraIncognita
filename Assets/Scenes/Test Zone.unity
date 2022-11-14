@@ -182,7 +182,7 @@ MonoBehaviour:
   newPlayerLevelText: {fileID: 1028269358}
   currentSPText: {fileID: 1142447667}
   newSPText: {fileID: 140100718}
-  baseStatUpCost: 5
+  baseStatUpCost: 3
   healthSlider: {fileID: 669459226}
   currentHealthText: {fileID: 1242613107}
   newHealthText: {fileID: 554102072}
@@ -97864,18 +97864,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 58fb47f4d319be14cb7001f8a1e81dd6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxHealth: 0
+  maxHealth: 100
   currentHealth: 0
-  attackDamage: 15
-  defence: 0
+  attackDamage: 20
+  defence: 5
   playerUI: {fileID: 1970241663304254014}
   healthBar: {fileID: 1970241663658770048}
   playerLevel: 1
-  healthLevel: 10
-  strengthLevel: 10
-  defenseLevel: 10
+  healthLevel: 1
+  strengthLevel: 1
+  defenseLevel: 1
   spCount: 0
-  blockReduction: 0.7
+  blockReduction: 0.3
 --- !u!1 &8512909424785524075
 GameObject:
   m_ObjectHideFlags: 0

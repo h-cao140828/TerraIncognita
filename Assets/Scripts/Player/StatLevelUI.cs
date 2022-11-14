@@ -46,25 +46,25 @@ public class StatLevelUI : MonoBehaviour
 
         healthSlider.value = playerStats.healthLevel;
         healthSlider.minValue = playerStats.healthLevel;
-        healthSlider.maxValue = 20;
+        healthSlider.maxValue = 5;
         currentHealthText.text = playerStats.healthLevel.ToString();
         newHealthText.text = playerStats.healthLevel.ToString();
 
         strengthSlider.value = playerStats.strengthLevel;
         strengthSlider.minValue = playerStats.strengthLevel;
-        strengthSlider.maxValue = 20;
+        strengthSlider.maxValue = 5;
         currentStrengthText.text = playerStats.strengthLevel.ToString();
         newStrengthText.text = playerStats.strengthLevel.ToString();
 
         defenseSlider.value = playerStats.defenseLevel;
         defenseSlider.minValue = playerStats.defenseLevel;
-        defenseSlider.maxValue = 20;
+        defenseSlider.maxValue = 5;
         currentDefenseText.text = playerStats.defenseLevel.ToString();
         newDefenseText.text = playerStats.defenseLevel.ToString();
 
         //intelligenceSlider.value = playerStats.intelligenceLevel;
         //intelligenceSlider.minValue = playerStats.intelligenceLevel;
-        //intelligenceSlider.maxValue = 30;
+        //intelligenceSlider.maxValue = 5;
         //currentIntelligenceText.text = playerStats.intelligenceLevel.ToString();
         //newIntelligenceText.text = playerStats.intelligenceLevel.ToString();
 
@@ -101,7 +101,7 @@ public class StatLevelUI : MonoBehaviour
     {
         for (int i = 0; i < newPlayerLevel; i++)
         {
-            spRequired = spRequired + Mathf.RoundToInt((newPlayerLevel * baseStatUpCost) * 0.5f);
+            spRequired = spRequired + Mathf.RoundToInt((newPlayerLevel * baseStatUpCost) * 2.5f);
         }
 
     }
@@ -142,6 +142,7 @@ public class StatLevelUI : MonoBehaviour
         //playerStats.maxMana = playerStats.SetMaxManaFromHealthLevel();
 
         playerStats.attackDamage = playerStats.setAttackDamage();
+        playerStats.defence = playerStats.setDefence();
 
         // Restore player's health to full each time level up
         playerStats.currentHealth = playerStats.maxHealth;
