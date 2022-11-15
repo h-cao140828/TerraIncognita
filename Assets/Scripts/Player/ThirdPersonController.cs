@@ -128,7 +128,7 @@ namespace StarterAssets
 
         PlayerCombat playerCombat;
         PlayerInteraction playerInteraction;
-        bool openInventory = false;
+        // bool openInventory = false;
         bool openStats = false;
 
         public bool canMove = true;
@@ -181,13 +181,14 @@ namespace StarterAssets
 
             // Runs the function that handles all interaction
             Interact();
-            Inventory();
+            //Inventory();
             StatsMenu();
         }
 
         private void LateUpdate()
         {
-            CameraRotation();
+            if (!openStats)
+                CameraRotation();
         }
 
         private void AssignAnimationIDs()
@@ -424,49 +425,42 @@ namespace StarterAssets
             }
         }
 
-        public void Inventory()
-        {
-            var keyboard = Keyboard.current;
-            if (keyboard.iKey.wasPressedThisFrame && playerCombat.sheathed)
-            {
-                if (!openInventory)
-                {
-                    openInventory = true;
-                    Cursor.lockState = CursorLockMode.None;
-                    // place holder
-                    Debug.Log("Opened inventory");
+        //public void Inventory()
+        //{
+        //    var keyboard = Keyboard.current;
+        //    if (keyboard.iKey.wasPressedThisFrame && playerCombat.sheathed)
+        //    {
+        //        if (!openInventory)
+        //        {
+        //            openInventory = true;
+        //            Cursor.lockState = CursorLockMode.None;
+        //            // place holder
+        //            Debug.Log("Opened inventory");
 
-                    // code for handling inventory
-                }
-                else
-                {
-                    openInventory = false;
-                    Cursor.lockState = CursorLockMode.Locked;
-                    // place holder
-                    Debug.Log("Closed inventory");
-                }
-            }
-        }
+        //            // code for handling inventory
+        //        }
+        //        else
+        //        {
+        //            openInventory = false;
+        //            Cursor.lockState = CursorLockMode.Locked;
+        //            // place holder
+        //            Debug.Log("Closed inventory");
+        //        }
+        //    }
+        //}
 
         public void StatsMenu()
         {
             var keyboard = Keyboard.current;
-            if (keyboard.kKey.wasPressedThisFrame && playerCombat.sheathed)
+            if (keyboard.kKey.wasPressedThisFrame)
             {
                 if (!openStats)
                 {
-                    openStats = true;
-                    // place holder
-                    Debug.Log("Opened skill menu");
-                    playerUI.gameObject.transform.Find("Stats Window").gameObject.SetActive(true);
-                    // code for handling skills
+                    StatsOpened();
                 }
                 else
                 {
-                    openStats = false;
-                    // place holder
-                    Debug.Log("Closed skill menu");
-                    playerUI.gameObject.transform.Find("Stats Window").gameObject.SetActive(false);
+                    StatsClosed();
                 }
             }
         }
@@ -484,11 +478,17 @@ namespace StarterAssets
         public void StatsClosed()
         {
             openStats = false;
+            Debug.Log("Closed skill menu");
+            playerUI.gameObject.transform.Find("Stats Window").gameObject.SetActive(false);
+            Time.timeScale = 1f;
         }
 
         public void StatsOpened()
         {
             openStats = true;
+            Debug.Log("Opened skill menu");
+            playerUI.gameObject.transform.Find("Stats Window").gameObject.SetActive(true);
+            Time.timeScale = 0f;
         }
     }
 }

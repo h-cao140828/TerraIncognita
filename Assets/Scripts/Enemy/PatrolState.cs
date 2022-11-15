@@ -19,7 +19,6 @@ public class PatrolState : StateMachineBehaviour
         agent = animator.GetComponent<NavMeshAgent>();
         agent.speed = 1.5f;
         timer = 0;
-        //GameObject gameObject = GameObject.FindGameObjectWithTag("DragonAWayPoints");
         GameObject gameObject = animator.transform.root.Find("WayPoints").gameObject;
 
         foreach (Transform t in gameObject.transform)

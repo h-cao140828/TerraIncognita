@@ -46,7 +46,6 @@ public class PlayerCombat : MonoBehaviour
         if (controller.Grounded)
         {
             Combat();
-            //Target();
         }
         Attack();
         Defend();
@@ -88,8 +87,6 @@ public class PlayerCombat : MonoBehaviour
     {
             // Plays an attack animation
             animator.SetTrigger("Attack");
-            // Detect enemies in range of attack
-            // Damage them
     }
 
     // A function for using player skills
@@ -131,11 +128,6 @@ public class PlayerCombat : MonoBehaviour
             Block(isBlocking);
         }
 
-
-        //if (keyboard.leftCtrlKey.wasPressedThisFrame && !sheathed)
-        //{
-        //    DeployBarrier();
-        //}
     }
 
     // A function for handling blocking
@@ -143,44 +135,8 @@ public class PlayerCombat : MonoBehaviour
     {
         // Play the blocking animation
         animator.SetBool("Block", blocking);
-        // Apply reduced damage taken
     }
 
-    //void DeployBarrier()
-    //{
-    //    // Play the animation for deploying a barrier
-    //    animator.SetTrigger("DeployBarrier");
-    //    // Code for negating damage
-    //    // Code for handling barrier cooldown
-    //    // Code for destroying the barrier object
-    //}
-
-    //void Target()
-    //{
-    //    var keyboard = Keyboard.current;
-    //    if (keyboard.tabKey.wasPressedThisFrame)
-    //    {
-    //        // Checks if the player has their weapon sheathed
-    //        if (sheathed)
-    //        {
-    //            DrawWeapon();
-    //            LockOn();
-    //        }
-    //        else
-    //        {
-    //            LockOn();
-    //        }
-    //    }
-    //}
-
-    //void LockOn()
-    //{
-    //    // Placeholder 
-    //    Debug.Log("Targeting system not implemented yet");
-
-    //    // Code to handle targeting a nearby attackable target
-    //    // Code to cycle through available targets.
-    //}
 
     void Combat()
     {

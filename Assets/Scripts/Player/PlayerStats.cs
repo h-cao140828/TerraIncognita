@@ -5,10 +5,10 @@ using UnityEngine;
 public class PlayerStats : MonoBehaviour
 {
 
-    public int maxHealth = 100;
+    public int maxHealth;
     public int currentHealth;
-    public int attackDamage = 20;
-    public int defence = 5;
+    public int attackDamage;
+    public int defence;
 
     public Canvas playerUI;
     public HealthBar healthBar;
@@ -21,7 +21,6 @@ public class PlayerStats : MonoBehaviour
     public int healthLevel = 1;
     public int strengthLevel = 1;
     public int defenseLevel = 1;
-    //public int intelligenceLevel = 10;
 
     public int spCount = 0;
 
@@ -50,19 +49,19 @@ public class PlayerStats : MonoBehaviour
 
     public int SetMaxHealthFromHealthLevel()
     {
-        maxHealth = maxHealth + (healthLevel * 25);
+        maxHealth = healthLevel * 75;
         return maxHealth;
     }
 
     public int setAttackDamage()
     {
-        attackDamage = attackDamage + (strengthLevel * 5);
+        attackDamage = strengthLevel * 20;
         return attackDamage;
     }
 
     public int setDefence()
     {
-        defence = defence + (defenseLevel * 2);
+        defence = defenseLevel * 2;
         return defence;
     }
 

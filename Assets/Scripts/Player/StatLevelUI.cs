@@ -31,11 +31,6 @@ public class StatLevelUI : MonoBehaviour
     public Text currentDefenseText;
     public Text newDefenseText;
 
-    //public Slider intelligenceSlider;
-    //public Text currentIntelligenceText;
-    //public Text newIntelligenceText;
-
-
     private void OnEnable()
     {
         currentPlayerLevel = playerStats.playerLevel;
@@ -62,12 +57,6 @@ public class StatLevelUI : MonoBehaviour
         currentDefenseText.text = playerStats.defenseLevel.ToString();
         newDefenseText.text = playerStats.defenseLevel.ToString();
 
-        //intelligenceSlider.value = playerStats.intelligenceLevel;
-        //intelligenceSlider.minValue = playerStats.intelligenceLevel;
-        //intelligenceSlider.maxValue = 5;
-        //currentIntelligenceText.text = playerStats.intelligenceLevel.ToString();
-        //newIntelligenceText.text = playerStats.intelligenceLevel.ToString();
-
         currentSPText.text = playerStats.spCount.ToString();
 
         UpdateProjectedPlayerLevel();
@@ -81,13 +70,15 @@ public class StatLevelUI : MonoBehaviour
         newPlayerLevel = newPlayerLevel + Mathf.RoundToInt(healthSlider.value) - playerStats.healthLevel;
         newPlayerLevel = newPlayerLevel + Mathf.RoundToInt(strengthSlider.value) - playerStats.strengthLevel;
         newPlayerLevel = newPlayerLevel + Mathf.RoundToInt(defenseSlider.value) - playerStats.defenseLevel;
-        //newPlayerLevel = newPlayerLevel + Mathf.RoundToInt(intelligenceSlider.value) - playerStats.intelligenceLevel;
         newPlayerLevelText.text = newPlayerLevel.ToString();
 
         CalculateSPCost();
         newSPText.text = spRequired.ToString();
 
-        if (playerStats.spCount < spRequired)
+        if ((playerStats.spCount < spRequired) || 
+            ((playerStats.healthLevel == Mathf.RoundToInt(healthSlider.value)) && 
+            (playerStats.strengthLevel == Mathf.RoundToInt(strengthSlider.value)) && 
+            (playerStats.defenseLevel == Mathf.RoundToInt(defenseSlider.value))))
         {
             confirmPlayerStatsButton.interactable = false;
         }
@@ -124,22 +115,14 @@ public class StatLevelUI : MonoBehaviour
         UpdateProjectedPlayerLevel();
     }
 
-    //public void UpdateIntelligenceLevelSlider()
-    //{
-    //    newIntelligenceText.text = intelligenceSlider.value.ToString();
-    //    UpdateProjectedPlayerLevel();
-    //}
-
     public void ConfirmPlayerStats()
     {
         playerStats.playerLevel = newPlayerLevel;
         playerStats.healthLevel = Mathf.RoundToInt(healthSlider.value);
         playerStats.strengthLevel = Mathf.RoundToInt(strengthSlider.value);
         playerStats.defenseLevel = Mathf.RoundToInt(defenseSlider.value);
-        //playerStats.intelligenceLevel = Mathf.RoundToInt(intelligenceSlider.value);
 
         playerStats.maxHealth = playerStats.SetMaxHealthFromHealthLevel();
-        //playerStats.maxMana = playerStats.SetMaxManaFromHealthLevel();
 
         playerStats.attackDamage = playerStats.setAttackDamage();
         playerStats.defence = playerStats.setDefence();
@@ -150,7 +133,6 @@ public class StatLevelUI : MonoBehaviour
 
         playerStats.spCount = playerStats.spCount - spRequired;
 
-        gameObject.SetActive(false);
         controller.StatsClosed();
     }
 }
