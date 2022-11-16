@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class PlayerStats : MonoBehaviour
 {
@@ -26,6 +27,15 @@ public class PlayerStats : MonoBehaviour
 
     // Amount of damage the player can block
     public float blockReduction = 0.3f;
+
+    private void Awake()
+    {
+        spCount = PlayerPrefs.GetInt("SP", 0);
+        playerLevel = PlayerPrefs.GetInt("Level", 1);
+        healthLevel = PlayerPrefs.GetInt("Health", 1);
+        strengthLevel = PlayerPrefs.GetInt("Strength", 1);
+        defenseLevel = PlayerPrefs.GetInt("Defense", 1);
+    }
 
     // Start is called before the first frame update
     void Start()
@@ -79,6 +89,7 @@ public class PlayerStats : MonoBehaviour
             animator.SetTrigger("Death");
             GetComponent<BoxCollider>().enabled = false;
             GetComponent<CharacterController>().enabled = false;
+            Respawn();
         }
         else
         {
@@ -103,6 +114,7 @@ public class PlayerStats : MonoBehaviour
             animator.SetTrigger("Death");
             GetComponent<BoxCollider>().enabled = false;
             GetComponent<CharacterController>().enabled = false;
+            Respawn();
         }
         else
         {
@@ -114,5 +126,16 @@ public class PlayerStats : MonoBehaviour
     public void AwardedSP(int sp)
     {
         spCount += sp;
+    }
+
+    public void Respawn()
+    {
+        PlayerPrefs.SetInt("SP", spCount);
+        PlayerPrefs.SetInt("Level", playerLevel);
+        PlayerPrefs.SetInt("Health", healthLevel);
+        PlayerPrefs.SetInt("Strength", strengthLevel);
+        PlayerPrefs.SetInt("Defense", defenseLevel);
+        Scene scene = SceneManager.GetActiveScene(); 
+        SceneManager.LoadScene(scene.name);
     }
 }
