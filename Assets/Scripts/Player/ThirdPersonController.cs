@@ -187,7 +187,7 @@ namespace StarterAssets
 
         private void LateUpdate()
         {
-            if (!openStats)
+            if (!openStats && !PauseMenu.gamePaused)
                 CameraRotation();
         }
 
