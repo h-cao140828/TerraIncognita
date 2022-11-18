@@ -90,6 +90,14 @@ public class StatLevelUI : MonoBehaviour
 
     private void CalculateSPCost()
     {
+        if ((playerStats.healthLevel == Mathf.RoundToInt(healthSlider.value)) &&
+            (playerStats.strengthLevel == Mathf.RoundToInt(strengthSlider.value)) &&
+            (playerStats.defenseLevel == Mathf.RoundToInt(defenseSlider.value)))
+        {
+            spRequired = 0;
+            return;
+        }
+
         for (int i = 0; i < newPlayerLevel; i++)
         {
             spRequired = spRequired + Mathf.RoundToInt((newPlayerLevel * baseStatUpCost) * 2.5f);

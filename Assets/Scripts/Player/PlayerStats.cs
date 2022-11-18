@@ -35,6 +35,7 @@ public class PlayerStats : MonoBehaviour
         healthLevel = PlayerPrefs.GetInt("Health", 1);
         strengthLevel = PlayerPrefs.GetInt("Strength", 1);
         defenseLevel = PlayerPrefs.GetInt("Defense", 1);
+        PlayerPrefs.DeleteAll();
     }
 
     // Start is called before the first frame update
@@ -89,7 +90,7 @@ public class PlayerStats : MonoBehaviour
             animator.SetTrigger("Death");
             GetComponent<BoxCollider>().enabled = false;
             GetComponent<CharacterController>().enabled = false;
-            Respawn();
+            StartCoroutine(timer());
         }
         else
         {
@@ -114,7 +115,7 @@ public class PlayerStats : MonoBehaviour
             animator.SetTrigger("Death");
             GetComponent<BoxCollider>().enabled = false;
             GetComponent<CharacterController>().enabled = false;
-            Respawn();
+            StartCoroutine(timer());
         }
         else
         {
@@ -137,5 +138,11 @@ public class PlayerStats : MonoBehaviour
         PlayerPrefs.SetInt("Defense", defenseLevel);
         Scene scene = SceneManager.GetActiveScene(); 
         SceneManager.LoadScene(scene.name);
+    }
+
+    IEnumerator timer()
+    {
+        yield return new WaitForSeconds(4);
+        Respawn();
     }
 }
