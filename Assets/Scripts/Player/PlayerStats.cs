@@ -52,10 +52,11 @@ public class PlayerStats : MonoBehaviour
 
     private void Update()
     {
-        if (!playerCombat.sheathed)
-            playerUI.gameObject.transform.Find("Vitality Bar").gameObject.SetActive(true);
-        else
-            playerUI.gameObject.transform.Find("Vitality Bar").gameObject.SetActive(false);
+        // Used to turn on and off player health bar
+        //if (!playerCombat.sheathed)
+        //    playerUI.gameObject.transform.Find("Vitality Bar").gameObject.SetActive(true);
+        //else
+        //    playerUI.gameObject.transform.Find("Vitality Bar").gameObject.SetActive(false);
     }
 
     public int SetMaxHealthFromHealthLevel()
@@ -142,7 +143,7 @@ public class PlayerStats : MonoBehaviour
 
     IEnumerator timer()
     {
-        yield return new WaitForSeconds(4);
+        yield return new WaitForSeconds(5f);
         Respawn();
     }
 }
