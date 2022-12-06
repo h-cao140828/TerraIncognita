@@ -74,7 +74,7 @@ GameObject:
   - component: {fileID: 2140427756303105182}
   - component: {fileID: 3133462257276054277}
   m_Layer: 0
-  m_Name: AttackArea
+  m_Name: GoblinAttackArea
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

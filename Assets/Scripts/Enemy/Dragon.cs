@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class Dragon : Enemy
 {
@@ -8,8 +9,18 @@ public class Dragon : Enemy
 
     private void Awake()
     {
-        healthLevel = 20;
-        base.Start();
+        Scene scene = SceneManager.GetActiveScene();
+
+        if (scene.name == "ZoneOneEasy")
+        {
+            healthLevel = 12;
+            base.Start();
+        }
+        else
+        {
+            healthLevel = 20;
+            base.Start();
+        }
     }
 
     public override void TakeDamage(int damage)

@@ -1,13 +1,32 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class DamagePlayerCollider : MonoBehaviour
 {
     public static bool hasCollide = false;
 
-    public int currentWeaponDamage = 25;
+    [SerializeField] int currentWeaponDamage;
+    
 
+    private void Awake()
+    {
+        Scene scene = SceneManager.GetActiveScene();
+
+        if (scene.name == "ZoneOneEasy")
+        {
+            if (this.transform.name == "GoblinAttackArea")
+                currentWeaponDamage = 7;
+            else
+                currentWeaponDamage = 12;
+        }
+        else
+            if (this.transform.name == "GoblinAttackArea")
+                currentWeaponDamage = 15;
+            else
+                currentWeaponDamage = 25;
+    }
 
     private void OnTriggerEnter(Collider other)
     {
